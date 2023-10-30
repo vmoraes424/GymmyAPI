@@ -1,12 +1,12 @@
-import { Tipo } from "../models/Tipo.js";
+import { TreinoTipo } from "../models/TreinoTipo.js";
 import { Treino } from "../models/Treino.js";
-import { Usuario } from "../models/Usuario.js";
+import { TreinoDescricao } from "../models/TreinoDescricao.js";
 
 
 export const treinoIndex = async (req, res) => {
   try {
     const treinos = await Treino.findAll({
-      include: Tipo
+      include: [TreinoTipo, TreinoDescricao]
     });
     res.status(200).json(treinos)
   } catch (error) {
@@ -23,7 +23,7 @@ export const treinoCreate = async (req, res) => {
   }
 
   try {
-    const treino = await Usuario.create({nome, tipo_id});
+    const treino = await Treino.create({nome, tipo_id});
     res.status(201).json(treino)
   } catch (error) {
     res.status(400).send(error)

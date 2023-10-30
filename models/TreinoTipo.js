@@ -1,8 +1,7 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/conecta.js";
-import { Treino } from "./Treino.js";
 
-export const Tipo = sequelize.define("tipo", {
+export const TreinoTipo = sequelize.define("tipo", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,

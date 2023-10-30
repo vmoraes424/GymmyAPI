@@ -3,7 +3,7 @@ import express from 'express'
 import { sequelize } from './database/conecta.js'
 import router from './routes.js'
 import { Treino } from './models/Treino.js'
-import { Tipo } from './models/Tipo.js'
+import { TreinoTipo } from './models/TreinoTipo.js'
 import { TreinoDescricao } from './models/TreinoDescricao.js'
 import { Usuario } from './models/Usuario.js'
 import { UsuarioTreino } from './models/UsuarioTreino.js'
@@ -18,11 +18,11 @@ async function conecta_db() {
   try {
     await sequelize.authenticate();
     console.log('Conexão com banco de dados realizada com sucesso');
-    await Treino.sync({force: true})
-    await Tipo.sync({force: true})
-    await TreinoDescricao.sync({force: true})
-    await Usuario.sync({force: true})
-    await UsuarioTreino.sync({force: true})
+    await TreinoTipo.sync({alter: true})
+    await Treino.sync({alter: true})
+    await Usuario.sync({alter: true})
+    await TreinoDescricao.sync({alter: true})
+    await UsuarioTreino.sync({alter: true})
     console.log("Ok! Tabelas sincronizadas com sucesso")
   } catch (error) {
     console.error('Erro na conexão com o banco: ', error);

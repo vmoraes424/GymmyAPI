@@ -1,8 +1,6 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../database/conecta.js';
-import { TreinoDescricao } from './TreinoDescricao.js';
-import { Tipo } from './Tipo.js';
-import { UsuarioTreino } from './UsuarioTreino.js';
+import { TreinoTipo } from './TreinoTipo.js';
 
 export const Treino = sequelize.define('treino', {
   id: {
@@ -15,14 +13,5 @@ export const Treino = sequelize.define('treino', {
     allowNull: false
   }
 });
-
-Treino.belongsTo(Tipo, {foreignKey: {
-  name: 'tipo_id'
-}})
-
-Treino.hasMany(Tipo, {
-  foreignKey: {
-    name: 'tipo_id',
-  }
-})
-
+Treino.belongsTo(TreinoTipo, { foreignKey: 'tipo_id' });
+TreinoTipo.hasMany(Treino, { foreignKey: 'tipo_id' });

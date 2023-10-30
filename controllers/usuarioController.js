@@ -1,9 +1,12 @@
 import { Usuario } from "../models/Usuario.js";
+import { UsuarioTreino } from "../models/UsuarioTreino.js";
 
 
 export const usuarioIndex = async (req, res) => {
   try {
-    const usuarios = await Usuario.findAll();
+    const usuarios = await Usuario.findAll({
+      include: [UsuarioTreino]
+    });
     res.status(200).json(usuarios)
   } catch (error) {
     res.status(400).send(error)

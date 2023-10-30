@@ -16,9 +16,6 @@ export const TreinoDescricao = sequelize.define('treino_descricao', {
     type: DataTypes.STRING(45),
     allowNull: false
   },
-  treino_id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    foreignKey: true
-  }
 });
+TreinoDescricao.belongsTo(Treino, { foreignKey: 'treino_id' });
+Treino.hasMany(TreinoDescricao, { foreignKey: 'treino_id' });
