@@ -4,6 +4,7 @@ import { treinoCreate, treinoIndex } from "./controllers/treinoController.js"
 import { tipoCreate, tipoIndex } from "./controllers/tipoController.js"
 import { treinoDescCreate, treinoDescIndex } from "./controllers/treinoDescricaoController.js"
 import { usuarioTreinoCreate, usuarioTreinoIndex } from "./controllers/usuarioTreinoController.js"
+import { semanaCreate, semanaIndex } from "./controllers/semanaController.js"
 
 const router = Router()
 
@@ -22,5 +23,8 @@ router.get('/treinoDesc', treinoDescIndex)
 
 router.get('/usuarioTreino', usuarioTreinoIndex)
       .post('/usuarioTreino', usuarioTreinoCreate)
+
+router.get('/semanas', semanaIndex)
+      .post('/semanas', semanaCreate)
 
 export default router
