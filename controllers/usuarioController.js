@@ -14,7 +14,7 @@ export const usuarioIndex = async (req, res) => {
 }
 
 export const usuarioCreate = async (req, res) => {
-  const {nome, email, senha, admin} = req.body
+  const {nome, email, senha, professor} = req.body
 
   if (!nome || !email || !senha) {
     res.status(400).json({ id: 0, msg: "Erro... Informe todos os dados" })
@@ -22,7 +22,7 @@ export const usuarioCreate = async (req, res) => {
   }
 
   try {
-    const usuario = await Usuario.create({nome, email, senha, admin});
+    const usuario = await Usuario.create({nome, email, senha, professor});
     res.status(201).json(usuario)
   } catch (error) {
     res.status(400).send(error)
