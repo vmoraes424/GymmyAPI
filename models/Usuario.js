@@ -19,7 +19,7 @@ export const Usuario = sequelize.define('usuario', {
     type: DataTypes.STRING(50),
     allowNull: false
   },
-  admin: {
+  professor: {
     type: DataTypes.BOOLEAN,
     defaultValue: false
   },
