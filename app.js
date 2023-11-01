@@ -7,6 +7,7 @@ import { TreinoTipo } from './models/TreinoTipo.js'
 import { TreinoDescricao } from './models/TreinoDescricao.js'
 import { Usuario } from './models/Usuario.js'
 import { UsuarioTreino } from './models/UsuarioTreino.js'
+import { Semanas } from './models/Semanas.js'
 
 const app = express()
 const port = 3001
@@ -23,6 +24,7 @@ async function conecta_db() {
     await Usuario.sync({alter: true})
     await TreinoDescricao.sync({alter: true})
     await UsuarioTreino.sync({alter: true})
+    await Semanas.sync({alter: true})
     console.log("Ok! Tabelas sincronizadas com sucesso")
   } catch (error) {
     console.error('Erro na conexão com o banco: ', error);
