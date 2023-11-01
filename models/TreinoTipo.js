@@ -11,4 +11,6 @@ export const TreinoTipo = sequelize.define("tipo", {
     type: DataTypes.STRING(40),
     allowNull: false,
   },
+}, {
+  timestamps: false
 });
