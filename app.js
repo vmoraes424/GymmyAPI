@@ -1,7 +1,8 @@
 import express from 'express'
+import cors from 'cors';
+import router from './routes.js'
 
 import { sequelize } from './database/conecta.js'
-import router from './routes.js'
 import { Treino } from './models/Treino.js'
 import { TreinoTipo } from './models/TreinoTipo.js'
 import { TreinoDescricao } from './models/TreinoDescricao.js'
@@ -13,6 +14,9 @@ const app = express()
 const port = 3001
 
 app.use(express.json())
+app.use(cors({
+  origin: 'http://localhost:3001/',
+}))
 app.use(router)
 
 async function conecta_db() {
