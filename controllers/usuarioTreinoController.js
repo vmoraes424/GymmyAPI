@@ -1,10 +1,11 @@
 import { Semanas } from "../models/Semanas.js";
+import { Usuario } from "../models/Usuario.js";
 import { UsuarioTreino } from "../models/UsuarioTreino.js";
 
 export const usuarioTreinoIndex = async (req, res) => {
   try {
     const treinos = await UsuarioTreino.findAll({
-      include: [Semanas]
+      include: [Usuario, Semanas]
     });
     res.status(200).json(treinos);
   } catch (error) {
@@ -14,27 +15,23 @@ export const usuarioTreinoIndex = async (req, res) => {
 
 export const usuarioTreinoCreate = async (req, res) => {
   const {
-    semanas,
-    qntRep,
-    qntDiasPorSemana,
+    qntSemanas,
     usuario_id,
     treinador_id,
     treino_id,
   } = req.body;
 
-  if (!semanas || !qntRep || !qntDiasPorSemana || !usuario_id || !treinador_id || !treino_id) {
+  if (!qntSemanas || !usuario_id || !treinador_id || !treino_id) {
     res.status(400).json({
       id: 0,
-      msg: "Erro... Informe as semanas, quantidade de repetições, a quantidade de dias, usuario_id, treinador_id e o treino_id",
+      msg: "Erro... Informe a quantidade de semanas, usuario_id, treinador_id e o treino_id",
     });
     return;
   }
 
   try {
     const treino = await UsuarioTreino.create({
-      semanas,
-      qntRep,
-      qntDiasPorSemana,
+      qntSemanas,
       usuario_id,
       treinador_id,
       treino_id,
