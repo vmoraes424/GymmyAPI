@@ -18,6 +18,8 @@ export const TreinoDescricao = sequelize.define('treino_descricao', {
   },
 }, {
   timestamps: false
+}, {
+  tableName: 'treino_descricoes'
 });
 TreinoDescricao.belongsTo(Treino, { foreignKey: 'treino_id' });
 Treino.hasMany(TreinoDescricao, { foreignKey: 'treino_id' });
