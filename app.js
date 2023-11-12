@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors';
 import router from './routes.js'
+import dotenv from 'dotenv'
 
 import { sequelize } from './database/conecta.js'
 import { Treino } from './models/Treino.js'
@@ -11,16 +12,22 @@ import { UsuarioTreino } from './models/UsuarioTreino.js'
 import { Semanas } from './models/Semanas.js'
 
 const app = express()
-const port = 3001
+const port = process.env.PORT
 
 app.use(express.json())
-app.use(cors({
-  origin: 'http://localhost:3001/',
-}))
+app.use(cors())
 app.use(router)
+
+console.log(process.env.DB_USERNAME);
+console.log(process.env.DB_PASSWORD);
+console.log(process.env.DATABASE);
+console.log(process.env.DB_PORT);
+console.log(process.env.DB_HOST);
+
 
 async function conecta_db() {
   try {
+    dotenv.config();
     await sequelize.authenticate();
     console.log('Conexão com banco de dados realizada com sucesso');
     await TreinoTipo.sync({alter: true})
