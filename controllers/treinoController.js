@@ -6,7 +6,8 @@ import { TreinoDescricao } from "../models/TreinoDescricao.js";
 export const treinoIndex = async (req, res) => {
   try {
     const treinos = await Treino.findAll({
-      include: [TreinoTipo, TreinoDescricao]
+      include: [TreinoTipo, TreinoDescricao],
+      order: [['createdAt', 'DESC']]
     });
     res.status(200).json(treinos)
   } catch (error) {
@@ -25,6 +26,19 @@ export const treinoCreate = async (req, res) => {
   try {
     const treino = await Treino.create({nome, tipo_id});
     res.status(201).json(treino)
+  } catch (error) {
+    res.status(400).send(error)
+  }
+}
+
+export const treinoById = async (req, res) => {
+  const id = req.params.id
+
+  try {
+    const treino = await Treino.findByPk(id, {
+      include: [TreinoTipo, TreinoDescricao]
+    });
+    res.status(200).json(treino)
   } catch (error) {
     res.status(400).send(error)
   }

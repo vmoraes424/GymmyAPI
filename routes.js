@@ -1,6 +1,6 @@
 import { Router } from "express"
 import { usuarioCreate, usuarioDelete, usuarioIndex } from "./controllers/usuarioController.js"
-import { treinoCreate, treinoIndex } from "./controllers/treinoController.js"
+import { treinoById, treinoCreate, treinoIndex } from "./controllers/treinoController.js"
 import { tipoCreate, tipoIndex } from "./controllers/tipoController.js"
 import { treinoDescCreate, treinoDescIndex } from "./controllers/treinoDescricaoController.js"
 import { usuarioTreinoCreate, usuarioTreinoIndex } from "./controllers/usuarioTreinoController.js"
@@ -13,6 +13,7 @@ router.get('/usuario', usuarioIndex)
       .delete('/usuario/:id', usuarioDelete)
 
 router.get('/treino', treinoIndex)
+      .get('/treino/:id', treinoById)
       .post('/treino', treinoCreate)
 
 router.get('/tipos', tipoIndex)
