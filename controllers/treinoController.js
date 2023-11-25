@@ -43,3 +43,14 @@ export const treinoById = async (req, res) => {
     res.status(400).send(error)
   }
 }
+
+export const treinoDelete = async (req, res) => {
+  const id = req.params.id
+
+  try {
+    await Treino.destroy({ where: { id } })
+    res.status(200).json({ id: 0, msg: "Treino excluido com sucesso!" })
+  } catch (error) {
+    res.status(400).send(error)
+  }
+}
