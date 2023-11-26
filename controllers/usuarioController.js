@@ -38,3 +38,16 @@ export const usuarioDelete = async (req, res) => {
     res.status(400).send(error);
   }
 }
+
+export const usuarioById = async (req, res) => {
+  const id = req.params.id
+
+  try {
+    const usuario = await Usuario.findByPk(id, {
+      include: [UsuarioTreino]
+    });
+    res.status(200).json(usuario)
+  } catch (error) {
+    res.status(400).send(error)
+  }
+}

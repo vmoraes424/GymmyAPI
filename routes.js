@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { usuarioCreate, usuarioDelete, usuarioIndex } from "./controllers/usuarioController.js"
+import { usuarioById, usuarioCreate, usuarioDelete, usuarioIndex } from "./controllers/usuarioController.js"
 import { treinoById, treinoCreate, treinoDelete, treinoIndex } from "./controllers/treinoController.js"
 import { tipoCreate, tipoIndex } from "./controllers/tipoController.js"
 import { treinoDescCreate, treinoDescIndex } from "./controllers/treinoDescricaoController.js"
@@ -9,6 +9,7 @@ import { semanaCreate, semanaIndex } from "./controllers/semanaController.js"
 const router = Router()
 
 router.get('/usuario', usuarioIndex)
+      .get('/usuario/:id', usuarioById)
       .post('/usuario', usuarioCreate)
       .delete('/usuario/:id', usuarioDelete)
 
