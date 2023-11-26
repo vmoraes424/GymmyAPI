@@ -1,6 +1,7 @@
 import { TreinoTipo } from "../models/TreinoTipo.js";
 import { Treino } from "../models/Treino.js";
 import { TreinoDescricao } from "../models/TreinoDescricao.js";
+import { Sequelize } from "sequelize";
 
 
 export const treinoIndex = async (req, res) => {
@@ -45,15 +46,12 @@ export const treinoById = async (req, res) => {
 }
 
 export const treinoDelete = async (req, res) => {
-  const id = req.params.id;
-  const t = await sequelize.transaction();
+  const id = req.params.id
 
   try {
-    await Treino.destroy({ where: { id }, transaction: t });
-    await t.commit();
-    res.status(200).json({ id: 0, msg: "Treino excluído com sucesso!" });
+    await Treino.destroy({ where: { id } })
+    res.status(200).json({ id: 0, msg: "Treino excluido com sucesso!" })
   } catch (error) {
-    await t.rollback();
-    res.status(400).send(error);
+    res.status(400).send(error)
   }
-};
+}
