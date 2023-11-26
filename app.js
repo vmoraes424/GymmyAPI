@@ -30,12 +30,12 @@ async function conecta_db() {
     dotenv.config();
     await sequelize.authenticate();
     console.log('Conexão com banco de dados realizada com sucesso');
-    await TreinoTipo.sync({alter: true})
-    await Treino.sync({alter: true})
-    await Usuario.sync({alter: true})
-    await TreinoDescricao.sync({alter: true})
-    await UsuarioTreino.sync({alter: true})
-    await Semanas.sync({alter: true})
+    await TreinoTipo.sync()
+    await Treino.sync()
+    await Usuario.sync()
+    await TreinoDescricao.sync()
+    await UsuarioTreino.sync()
+    await Semanas.sync()
     console.log("Ok! Tabelas sincronizadas com sucesso")
   } catch (error) {
     console.error('Erro na conexão com o banco: ', error);
